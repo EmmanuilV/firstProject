@@ -1,0 +1,17 @@
+body {
+    min-width: 330px;
+    text-align: center;    
+    margin: auto;
+    border: 2px solid #a36565;
+    overflow: auto;
+}
+table {
+    display: block;
+}
+td { 
+    font-size: 20px;
+    margin-left: 20px;
+    text-align: center;
+    border: 2px solid antiquewhite;
+    padding: 5px;
+}

@@ -1,29 +1,25 @@
-let emm;
-
-class Contact {
-    constructor(firstNameOrObject, lastName, email) {
-        if (typeof firstNameOrObject === "object") {
-            Object.assign(this, firstNameOrObject);
-        } else {
-            this.firstName = firstNameOrObject;
-            this.lastName = lastName;
-            this.email = email;
-        }
-    }
-    toString() {
-        return `${contact.firstName} ${contact.lastName} <${contact.email}>`; 
+class Task {
+    constructor(title, description, done, dueDate) {
+        this.title = title;
+        this.description = description;
+        this.done = done;
+        this.dueDate = dueDate;
     }
 }
 
-let emmanuil = new Contact("Emmanuil", "Vardanian", "em.vardany@gmail.com");
+let todoList = [
+    new Task("Make Breakfast", "meat, vegetables", false, '2021-04-18'),
+    new Task("Make Dinner", "meat, rice", false, '2021-04-20'),
+    new Task("Make Supper", "meat, potato", false, '2021-04-21')
 
-console.log('in main', '' + emmanuil);
+]
 
-let colors = { red: "#ff0000", black: "#000000", white: "#ffffff"};
+const todoItem = document.getElementById('tasks');
+for (let id = 0; id < todoList.length; id++) {
+    function appendTask(task, id) {
+        const { title, description, done, dueDate } = task;
 
-for (let color of Object.keys(colors)){
-    console.log(color + ": " + colors[color])
+        todoItem.innerHTML += `<tr><td>${id+1}</td><td>${done}</td><td>${title}</td><td>${description}</td><td>${dueDate}</td></tr>`;
+    }
 }
-
-// console.log(printContact(emmanuil));
-
+todoList.forEach(appendTask);
