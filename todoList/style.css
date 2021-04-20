@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+}
+
+body {
+    min-width: 330px;
+    max-width: 1000px;
+    min-height: 977px;
+    margin: 0 auto;
+    background-image: linear-gradient(to right top,#F5E9E9,#6377AB);
+    background-repeat: no-repeat;
+
+
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+}
+
+section {
+    flex-direction: column;
+    margin: 2px;
+    padding: 5px;
+    display: flex;
+}
+
+.check-title {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+}
+
+section h3 {
+    margin-left: 16px;
+}
+
+.task-complete {
+    text-decoration: line-through;
+    color: gray;
+}
