@@ -19,22 +19,22 @@ const todoItem = document.querySelector('main');
 
 
 function deleteTask(target) {
-    target.parrentElement.remove();
-    let id = target.parrentElement.id
-    todoList.splice(id);
-    renderTasksList(todoList);
+    target.parentElement.remove();
 }
 
-function renderTasksList(params) {
-    
+function generationId(task) {
+    let index = 1;
+    appendTask(task, index);
+    index++;
 }
-function appendTask(task) {
+
+function appendTask(task, index) {
     const { title, description, done, dueDate } = task;
     let date = new Date(dueDate);
     let dateStrFormat = `${date.getDate()}.${date.getMonth()+1}.${date.getFullYear()}`
     todoItem.innerHTML +=
-        `<section>` +
-        `<button onclick="deleteTask(event)">&#735</button>` +
+        `<section id="${index}">` +
+        `<button onclick="deleteTask(event.target)">&#735</button>` +
             `<div class="title">` +
                 `${isCompleteForInput(done)}` +
                 `<h3 ${isCompleteForTitle(done)}>${title}</h3>` +
@@ -77,4 +77,4 @@ function checkDate(dueDate, done) {
     }
 }
 
-todoList.forEach(appendTask);
+todoList.forEach(generationId);

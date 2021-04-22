@@ -31,6 +31,7 @@ section {
 .title {
     display: flex;
     align-items: center;
+    width: 250px;
     margin-top: -15px;
 }
 
