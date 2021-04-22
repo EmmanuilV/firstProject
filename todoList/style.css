@@ -9,8 +9,6 @@ body {
     margin: 0 auto;
     background-image: linear-gradient(to right top,#F5E9E9,#6377AB);
     background-repeat: no-repeat;
-
-
 }
 
 h1 {
@@ -20,15 +18,20 @@ h1 {
 
 section {
     flex-direction: column;
-    margin: 2px;
+    margin: 5px;
     padding: 5px;
+    width: 300px;
+    min-height: 80px;
     display: flex;
+    background: darkgray;
+    justify-content: center;
+    border-radius: 20px;
 }
 
-.check-title {
+.title {
     display: flex;
     align-items: center;
-    margin-top: 15px;
+    margin-top: -15px;
 }
 
 section h3 {
@@ -38,4 +41,25 @@ section h3 {
 .task-complete {
     text-decoration: line-through;
     color: gray;
+}
+
+.info {
+    display: inline;
+    margin-left: 30px;
+    width: 300px;
+}
+
+.over-due-date {
+    color: red;
+}
+
+button {
+    display: flex;
+    justify-content: center;
+    width: 14px;
+    height: 14px;
+    margin-left: 275px;
+    background-color: rgba(211, 28, 28, 0.514);
+    border: 1px solid black;
+    border-radius: 4px;
 }

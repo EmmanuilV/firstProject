@@ -8,26 +8,41 @@ class Task {
 }
 
 let todoList = [
-    new Task("Make Breakfast", "meat, vegetables", false, '2021-04-18'),
+    new Task("Make Breakfast", "meat, vegetable", false, '2021-04-18'),
     new Task("Make Dinner", "meat, rice", true, '2021-04-20'),
-    new Task("Make Supper", "meat, potato", false, '2021-04-21')
+    new Task("Make Supper", "meat, potato", false, '2021-04-25')
 
 ]
 
 const todoItem = document.querySelector('main');
 
+
+
+function deleteTask(target) {
+    target.parrentElement.remove();
+    let id = target.parrentElement.id
+    todoList.splice(id);
+    renderTasksList(todoList);
+}
+
+function renderTasksList(params) {
+    
+}
 function appendTask(task) {
     const { title, description, done, dueDate } = task;
     let date = new Date(dueDate);
-    let dateStrFormat = `${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`
+    let dateStrFormat = `${date.getDate()}.${date.getMonth()+1}.${date.getFullYear()}`
     todoItem.innerHTML +=
         `<section>` +
-            `<div class="check-title">` +
+        `<button onclick="deleteTask(event)">&#735</button>` +
+            `<div class="title">` +
                 `${isCompleteForInput(done)}` +
                 `<h3 ${isCompleteForTitle(done)}>${title}</h3>` +
             `</div>` +
-            `<p>${description}</p>` +
-            `<p>${getDueDate(dateStrFormat)}</p>` +
+            `<div class="info">`+
+                `<p>${description}</p>` +
+                `<p ${checkDate(dueDate, done)}>${getDueDate(dateStrFormat)}</p>` +
+            `</div>` +
         `</section>`;
 }
 
@@ -53,11 +68,13 @@ function getDueDate(dueDate) {
     }
 }
 
-function checkDate(dueDate) {
-    if (dueDate != "" && dueDate != undefined) {
-        if (dueDate < new Date().toda){}
+function checkDate(dueDate, done) {
+    let date = new Date(dueDate);
+    let now = new Date();
+
+    if (date < now && done != true) {
+        return 'class="over-due-date"'
     }
 }
 
-// function 
 todoList.forEach(appendTask);
