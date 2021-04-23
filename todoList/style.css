@@ -3,12 +3,18 @@
 }
 
 body {
-    min-width: 330px;
+    min-width: 320px;
     max-width: 1000px;
-    min-height: 977px;
+    height: auto;
     margin: 0 auto;
+    padding-left: 3%;
     background-image: linear-gradient(to right top,#F5E9E9,#6377AB);
     background-repeat: no-repeat;
+    background-size: cover;
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
 h1 {
@@ -16,16 +22,24 @@ h1 {
     justify-content: center;
 }
 
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 295px;
+    padding-left: 6px;
+}
+
 section {
     flex-direction: column;
-    margin: 5px;
+    margin-top: 15px;
     padding: 5px;
-    width: 300px;
+    width: 290px;
     min-height: 80px;
     display: flex;
     background: darkgray;
     justify-content: center;
     border-radius: 20px;
+    box-shadow: 7px 5px 5px #032069;
 }
 
 .title {
@@ -54,7 +68,7 @@ section h3 {
     color: red;
 }
 
-button {
+section button {
     display: flex;
     justify-content: center;
     width: 14px;
