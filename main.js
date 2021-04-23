@@ -49,9 +49,22 @@ function completeTask(target) {
     }
 }
 
-function showTasks(target) {
-    
-    target.closest('SECTION').style.display = 'none';
+function showAllTasks(target) {
+    let section = document.querySelectorAll('section');
+    for (let i = 0; i < section.length; i++) {
+        if(todoList[i].done) {
+            section[i].style.display = 'none';
+        }
+    }
+}
+
+function hideTask(done) {
+    let section = document.querySelectorAll('section');
+    for (let i = 0; i < section.length; i++) {
+        if(todoList[i].done) {
+            section[i].style.display = 'flex';
+        }
+    }
 }
 
 function appendTask(task, index) {
