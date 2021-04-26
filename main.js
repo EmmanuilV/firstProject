@@ -42,53 +42,51 @@ function deleteTask(target) {
     let id = target.parentElement.id;
     for (let i = 0; i < todoList.length; i++) {
         if (todoList[i].id == id) {
-            console.log("deleted: " + id, todoList[i]);
-
             todoList.splice(i, 1);
             target.parentElement.remove();
         }
     }
 }
 
-function completeTask(target) {
-    // let id = target.parentElement.parentElement.id;
-    // console.log("Start info: " + id + " - " + todoList[id - 1].done);
+const unfinishedButton = document.querySelector(".unfinished-task");
 
-    // if (todoList[id - 1].done) {
-    //     todoList[id - 1].done = false;
-    //     target.parentElement.classList.remove("task-complete");
-    //     console.log(todoList[id - 1].done);        
-    // } else {
-    //     todoList[id - 1].done = true;
-    //     target.parentElement.classList.add("task-complete");
-    //     console.log("Task Done inside:" + todoList[id - 1].done);
-    // }
-    // console.log("Task Done outside:" + todoList[id - 1].done);
-    // console.log(todoList);
+function completeTask(target) {
     let titleBlock = target.closest('DIV');
     titleBlock.classList.toggle('task-complete');
+    if (unfinishedButton.classList.contains('on')) {
+        titleBlock.closest("SECTION").style.display = 'none';
+    }
 }
 
 function hideTasks(target) {
     let section = document.querySelectorAll('section');
-    // for (let i = 0; i < todoList.length; i++) {
-    //     if (todoList[i] !== undefined && todoList[i].done) {
-    //         console.log(section[i].id, todoList[i]);
-    //         section[i].style.display = 'none';
-    //     }
-    // }
-    section.forEach(element =>{
+    section.forEach(element => {
         if(element.querySelector('.title').classList.contains('task-complete')){
-            element.style.display ='none';
+            element.style.display = 'none';
         }
     })
+    
+    if (!target.classList.contains('on')){
+        document.querySelector('.buttons .on').classList.remove('on');
+        target.classList.add('on');
+    }
+    
+
+}
+
+function activateButton(target) {
+
 }
 
 function showAllTasks(target) {
     let section = document.querySelectorAll('section');
     section.forEach(element =>{
-        element.style.display ='flex';
+        element.style.display = 'flex';
     })
+    if (!target.classList.contains('on')){
+        document.querySelector('.buttons .on').classList.remove('on');
+        target.classList.add('on');
+    }
 }
 
 

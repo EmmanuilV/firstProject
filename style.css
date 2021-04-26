@@ -95,3 +95,8 @@ form {
 form input {
     margin: 3px;
 }
+
+.on {
+    border: 3px solid rgb(70, 95, 161);
+    background: rgb(153, 210, 229);
+}
