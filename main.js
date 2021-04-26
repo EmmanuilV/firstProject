@@ -10,15 +10,10 @@ class Task {
 
 const todoItem = document.querySelector('main');
 let todoList = [
-    new Task(1, "1Make Breakfast", "meat, vegetable", false, '2021-04-18'),
-    new Task(2, "2Make Dinner", "meat, rice", true, '2021-04-20'),
-    new Task(3, "3Make Supper", "meat, potato", false, '2021-04-25'),
-    new Task(4, "4Make Breakfast", "meat, vegetable", false, '2021-04-18'),
-    new Task(5, "5Make Dinner", "meat, rice", true, '2021-04-20'),
-    new Task(6, "6Make Supper", "meat, potato", false, '2021-04-25'),
-    new Task(7, "7Make Breakfast", "meat, vegetable", false, '2021-04-18'),
-    new Task(8, "8Make Dinner", "meat, rice", true, '2021-04-20'),
-    new Task(9, "9Make Supper", "meat, potato", false, '2021-04-25')
+    new Task(1, "Make Breakfast", "meat, vegetable", false, '2021-04-18'),
+    new Task(2, "Make Dinner", "meat, rice", true, '2021-04-20'),
+    new Task(3, "Make Supper", "meat, potato", false, '2021-04-25'),
+    new Task(4, "Make Breakfast", "meat, vegetable", false, '2021-04-18'),
 ]
 
 
@@ -71,27 +66,29 @@ function completeTask(target) {
     // console.log("Task Done outside:" + todoList[id - 1].done);
     // console.log(todoList);
     let titleBlock = target.closest('DIV');
-    titleBlock.classList.toggle('task-complete')
+    titleBlock.classList.toggle('task-complete');
 }
 
 function hideTasks(target) {
     let section = document.querySelectorAll('section');
-    for (let i = 0; i < todoList.length; i++) {
-        if (todoList[i] !== undefined && todoList[i].done) {
-            console.log(section[i].id, todoList[i]);
-            section[i].style.display = 'none';
+    // for (let i = 0; i < todoList.length; i++) {
+    //     if (todoList[i] !== undefined && todoList[i].done) {
+    //         console.log(section[i].id, todoList[i]);
+    //         section[i].style.display = 'none';
+    //     }
+    // }
+    section.forEach(element =>{
+        if(element.querySelector('.title').classList.contains('task-complete')){
+            element.style.display ='none';
         }
-    }
+    })
 }
 
 function showAllTasks(target) {
     let section = document.querySelectorAll('section');
-    for (let i = 0; i < todoList.length; i++) {
-        if (todoList[i] !== undefined && todoList[i].done) {
-            console.log(section[i].id, todoList[i]);
-            section[i].style.display = 'flex';
-        }
-    }
+    section.forEach(element =>{
+        element.style.display ='flex';
+    })
 }
 
 
@@ -135,7 +132,7 @@ function isCompleteForInput(done) {
 }
 
 function getDueDate(dueDate) {
-    if (dueDate === "" || dueDate === undefined || dueDate === null) {
+    if (dueDate === "" || dueDate === undefined || dueDate === null || dueDate == "Invalid Date") {
         return "";
     } else {
         return dueDate.toDateString();
