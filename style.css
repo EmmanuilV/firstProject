@@ -3,11 +3,6 @@
 }
 
 body {
-    min-width: 320px;
-    max-width: 1000px;
-    height: auto;
-    margin: 0 auto;
-    padding-left: 3%;
     background-image: linear-gradient(to right top,#F5E9E9,#6377AB);
     background-repeat: no-repeat;
     background-size: cover;
@@ -17,9 +12,16 @@ body {
     flex-direction: column;
 }
 
+.todo-list {
+    max-width: 1000px;
+    min-width: 320px;
+    margin: 0 auto;
+}
+
 h1 {
     display: flex;
     justify-content: center;
+    margin-bottom: 25px;
 }
 
 .buttons {
@@ -77,4 +79,16 @@ section button {
     background-color: rgba(211, 28, 28, 0.514);
     border: 1px solid black;
     border-radius: 4px;
+}
+
+form {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+
+    top: 100px;
+    left: 150px;
+}
+form input {
+    margin: 3px;
 }
