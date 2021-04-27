@@ -143,13 +143,18 @@ function createTask(task) {
 }
 
 function deleteTask(target) {
-    let id = target.parentElement.id;
-    for (let i = 0; i < todoList.length; i++) {
-        if (todoList[i].id == id) {
-            todoList.splice(i, 1);
-            target.parentElement.remove();
-        }
-    }
+    
+    // let id = target.parentElement.id;
+    // for (let i = 0; i < todoList.length; i++) {
+    //     if (todoList[i].id == id) {
+    //         todoList.splice(i, 1);
+    //         target.parentElement.remove();
+    //     }
+    // }
+    return fetch(`${tasksEndpoint}/delete/${target.parentElement.id}`, {
+        method: 'DELETE',
+    })
+    .then(response => response.ok ? target.parentElement.remove() : alert('lost connection'));
 }
 
 fetch(tasksEndpoint + '/all')
