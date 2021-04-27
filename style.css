@@ -4,9 +4,11 @@
 
 html{
     height: 100%;
-    background-image: linear-gradient(to right top,#F5E9E9,#6377AB);
+    background-image: linear-gradient(to right top,#F5E9E9,#a5b1cf);
+    height: auto;
     background-repeat: no-repeat;
     background-size: cover;
+    user-select: none;
 }
 
 body {
@@ -99,4 +101,30 @@ form input {
 .on {
     border: 3px solid rgb(70, 95, 161);
     background: rgb(153, 210, 229);
+}
+
+.form-hide-button {
+    display: none;
+}
+
+@media screen and (max-width: 1020px) {
+    form {
+        top: 370px;
+        left: 90px;
+        display: none;
+    }
+
+    .form-hide-button {
+        display: block;
+        position: fixed;
+        right: 13px;
+        top: 500px;
+        border-radius: 50%;
+        border: none;
+        background-color: rgba(0, 191, 255, 0.5);
+        height: 45px;
+        width: 45px;
+    }
+    
+
 }

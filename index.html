@@ -11,19 +11,22 @@
     <div class="todo-list">
         <header>
             <h1>TodoList</h1>
-        </header>
-        <main>
             <div class="buttons">
                 <button class="all-task on" onclick="showAllTasks(event.target)">All tasks</button>
                 <button class="unfinished-task" onclick="hideTasks(event.target)">Unfinished tasks</button>
             </div>
+        </header>
+        <main>
+
         </main>
+
         <form name="task">
             <input type="text" name="title" placeholder="Title" required>
             <input type="text" name="description" placeholder="Description">
             <input type="date" name="dueDate">
             <button type="submit">Add Task</button>
         </form>
+        <button class="form-hide-button" onclick="showForm(event.target)">+</button>
     </div>
     <script text="text/javascript" src="main.js"></script>
 </body>
