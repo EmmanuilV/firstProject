@@ -2,26 +2,6 @@ const todoItem = document.querySelector('main');
 
 let taskForm = document.forms['task'];
 
-
-// function deleteTask(target) {
-//     let id = target.parentElement.id;
-//     for (let i = 0; i < todoList.length; i++) {
-//         if (todoList[i].id == id) {
-//             todoList.splice(i, 1);
-//             target.parentElement.remove();
-//         }
-//     }
-// }
-
-
-function completeTask(target) {
-    let titleBlock = target.closest('DIV');
-    titleBlock.classList.toggle('task-complete');
-    if (document.querySelector('main').classList.contains('active')) {
-        titleBlock.closest("SECTION").style.display = 'none';
-    }
-}
-
 function hideTasks(target) {
     let section = document.querySelectorAll('section');
     section.forEach(element => {
@@ -32,7 +12,7 @@ function hideTasks(target) {
     if (!target.classList.contains('on')) {
         document.querySelector('.buttons .on').classList.remove('on');
         target.classList.add('on');
-        document.querySelector('main').classList.add('active');
+        document.querySelector('main').classList.add('unfinishedTaskMode');
     }
 }
 
@@ -44,7 +24,7 @@ function showAllTasks(target) {
     if (!target.classList.contains('on')) {
         document.querySelector('.buttons .on').classList.remove('on');
         target.classList.add('on');
-        document.querySelector('main').classList.remove('active');
+        document.querySelector('main').classList.remove('unfinishedTaskMode');
     }
 }
 
@@ -143,18 +123,29 @@ function createTask(task) {
 }
 
 function deleteTask(target) {
-    
-    // let id = target.parentElement.id;
-    // for (let i = 0; i < todoList.length; i++) {
-    //     if (todoList[i].id == id) {
-    //         todoList.splice(i, 1);
-    //         target.parentElement.remove();
-    //     }
-    // }
     return fetch(`${tasksEndpoint}/delete/${target.parentElement.id}`, {
         method: 'DELETE',
     })
-    .then(response => response.ok ? target.parentElement.remove() : alert('lost connection'));
+    .then(response => response.ok ? target.parentElement.remove() : alert('connection lost'));
+}
+
+function completeTask(target) {
+    let titleBlock = target.closest('DIV');
+    titleBlock.classList.toggle('task-complete');
+    if (document.querySelector('main').classList.contains('unfinishedTaskMode')) {
+        titleBlock.closest("SECTION").style.display = 'none';
+    }
+
+}
+
+function updateCheckDone(params) {
+    return fetch(`${tasksEndpoint}/update/${target.parentElement.id}`, {
+        method: 'PUT', 
+        headers:  {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(task)
+    })
 }
 
 fetch(tasksEndpoint + '/all')

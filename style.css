@@ -6,7 +6,7 @@ html{
     height: 100%;
     background-image: linear-gradient(to right top,#F5E9E9,#a5b1cf);
     height: auto;
-    min-height: 660px;
+    min-height: 100%;
     background-repeat: no-repeat;
     background-size: cover;
     user-select: none;
@@ -110,8 +110,8 @@ form input {
 
 @media screen and (max-width: 1020px) {
     form {
-        top: 370px;
-        left: 90px;
+        top: 385px;
+        left: 120px;
         display: none;
     }
 
@@ -126,6 +126,4 @@ form input {
         height: 45px;
         width: 45px;
     }
-    
-
 }
