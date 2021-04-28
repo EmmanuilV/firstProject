@@ -61,7 +61,7 @@ section h3 {
     margin-left: 16px;
 }
 
-.task-complete {
+.task-complete  h3{
     text-decoration: line-through;
     color: gray;
 }
@@ -97,6 +97,10 @@ form {
 }
 form input {
     margin: 3px;
+}
+
+.unfinishedTaskMode .task-complete {
+    display: none;
 }
 
 .on {

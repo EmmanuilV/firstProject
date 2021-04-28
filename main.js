@@ -4,12 +4,6 @@ let taskForm = document.forms['task'];
 
 
 function hideTasks(target) {
-    let section = document.querySelectorAll('section');
-    section.forEach(element => {
-        if (element.querySelector('.title').classList.contains('task-complete')) {
-            element.style.display = 'none';
-        }
-    })
     if (!target.classList.contains('on')) {
         document.querySelector('.buttons .on').classList.remove('on');
         target.classList.add('on');
@@ -18,10 +12,6 @@ function hideTasks(target) {
 }
 
 function showAllTasks(target) {
-    let section = document.querySelectorAll('section');
-    section.forEach(element => {
-        element.style.display = 'flex';
-    })
     if (!target.classList.contains('on')) {
         document.querySelector('.buttons .on').classList.remove('on');
         target.classList.add('on');
@@ -34,9 +24,9 @@ function showAllTasks(target) {
 function appendTask(task) {
     const { todoItemId, title, description, done, dueDate } = task;
     todoItem.innerHTML +=
-        `<section id="${todoItemId}">` +
+        `<section id="${todoItemId}" class="${isCompleteForTitle(done)}">` +
         `<button onclick="deleteTask(event.target)">&#735</button>` +
-        `<div class="title ${isCompleteForTitle(done)}" >` +
+        `<div class="title">` +
         `<input type="checkbox" ${isCompleteForInput(done)}  onclick="completeTask(event.target)"/>` +
         `<h3>${title}</h3>` +
         `</div>` +
@@ -131,38 +121,20 @@ function deleteTask(target) {
         .then(response => response.ok ? target.parentElement.remove() : alert(response.statusText));
 }
 
-function completeTask(target) {
-    let titleBlock = target.closest('DIV');
-    // console.log(getTask(target));
-    let checker = true;
-    if (isCompleteForInput(getTask(target).then(task => task.done) === "checked")) {
-        titleBlock.classList.add('task-complete')
-
-    } 
-    if (titleBlock.classList.contains('task-complete')) {
-        checker = false;
-    }
-    else {
-        checker = true;
-    }
-    console.log("outside:" + checker);
-    updateTask(target, checker)
-    .then(_ => titleBlock.classList.toggle('task-complete'), alert)
-
-
-    if (document.querySelector('main').classList.contains('unfinishedTaskMode')) {
-        titleBlock.closest("SECTION").style.display = 'none';
-    }
-}
-
-function updateTask(target, checker) {
-    console.log(checker);
+function completeTask(checkbox) {
+    let taskElement = checkbox.closest('SECTION');
+    let done = checkbox.checked;
+    console.log("outside:" + done);
+    updateTask(checkbox, done)
+    .then(_ => taskElement.classList.toggle('task-complete'), alert)}
+function updateTask(target, done) {
+    console.log(done);
     return fetch(tasksEndpoint + '/todoItem/' + target.parentElement.parentElement.id, {
         method: 'PATCH',
         headers:  {
             'Content-Type': 'application/json-patch+json'
         },
-        body: JSON.stringify([{ op : "replace", path : "/done", value : checker }])
+        body: JSON.stringify([{ op : "replace", path : "/done", value : done }])
     })
 }
 
